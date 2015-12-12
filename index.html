@@ -2,15 +2,48 @@
 <html ng-app="myTodo">
 <head>
   <title>Angular To-Do</title>
-    <!-- Latest compiled and minified CSS -->
-    <script src="jquery.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script src="https://code.angularjs.org/1.3.0/angular.min.js"></script>
-    <script src="https://code.angularjs.org/1.3.0/angular-route.min.js"></script>
-    <script src = "app.js"></script>
+  <!-- Latest compiled and minified CSS -->
+  <script src="jquery.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script src="https://code.angularjs.org/1.3.0/angular.min.js"></script>
+  <script src="https://code.angularjs.org/1.3.0/angular-route.min.js"></script>
+  <script src = "app.js"></script>
 </head>
-<body ng-controller="TodoCtrl">
-   <h1>To Do</h1>
-</body>
+  <body ng-controller="TodoCtrl as todoList ">
+  <div class="container">
+    
+    <form class="form-horizontal" ng-submit="todoList.addTodo()">
+      <fieldset>
+        <legend>To-Do</legend>
+        <p>Organize yourself</p>
+        <div class="form-group">
+          <label for="todo-list" class="col-lg-2 control-label">Task Title</label>
+          <div class="col-lg-10">
+            <input type="text" class="form-control" ng-model = "todoList.newTask.title">
+          </div>
+        </div>
+        <div class="form-group">
+        <label for="textArea" class="col-lg-2 control-label">Description</label>
+          <div class="col-lg-10">
+            <textarea class="form-control" rows="3" id="textArea" ng-model = "todoList.newTask.description" ></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-10 col-lg-offset-2">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+
+    <section id "todo">
+     <article class="todo" ng-repeat = "todo in todoList.todo">
+      <h2>{{ todo.title }}  </h2>
+      <p> {{ todo.description }}  </p>    
+     </article>
+       
+    </section>
+  </div>
+  </body>
 </html>

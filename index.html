@@ -10,7 +10,39 @@
     <script src="https://code.angularjs.org/1.3.0/angular-route.min.js"></script>
     <script src = "app.js"></script>
 </head>
-<body ng-controller="TodoCtrl">
-   <h1>To Do</h1>
+<body ng-controller="TodoCtrl as todoList">
+    <form class="form-horizontal" ng-submit = "todoList.addTodo()">
+  <fieldset>
+    <legend>Todo</legend>
+    <div class="form-group">
+      <label for="task" class="col-lg-2 control-label">Task</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" ng-model="todoList.newTodo.title">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="textArea" class="col-lg-2 control-label">Textarea</label>
+      <div class="col-lg-10">
+        <textarea class="form-control" rows="3" ng-model="todoList.newTodo.description"></textarea>
+        <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+    
+    <section id="todo">
+        <article id="todo" ng-repeat="todo in todoList.todo">
+            <h3>{{ todo.title }}</h3>
+            <p> {{ todo.description }}</p>   
+            <a href="" ng-click="todoList.removeTodo($index)">Remove</a>
+        </article>
+    </section>
 </body>
 </html>
